@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="ARL"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary="ARL for Deezer login"
+        android:title="ARL" />
+    <EditTextPreference
+        android:defaultValue="Default value"
+        android:key="Server"
+        android:selectAllOnFocus="true"
+        android:singleLine="true"
+        android:summary='Server URL\nwith or without trailing "/"'
+        android:title="Server" />
+    <SwitchPreference
+        android:defaultValue="false"
+        android:key="darkTheme"
+        android:title="Dark Theme" />
+</PreferenceScreen>
