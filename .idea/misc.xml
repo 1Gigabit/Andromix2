@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="../../../../layout/custom_preview.xml" value="0.209375" />
+        <entry key="app/src/main/res/drawable/ic_baseline_arrow_circle_down_24.xml" value="0.209375" />
+        <entry key="app/src/main/res/layout/activity_album.xml" value="0.21" />
+        <entry key="app/src/main/res/layout/activity_artist.xml" value="0.190625" />
+        <entry key="app/src/main/res/layout/activity_downloadqueue.xml" value="0.190625" />
+        <entry key="app/src/main/res/layout/activity_firsttime.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.29483695652173914" />
+        <entry key="app/src/main/res/layout/activity_settings.xml" value="0.3242753623188406" />
+        <entry key="app/src/main/res/layout/fragment_album.xml" value="0.33" />
+        <entry key="app/src/main/res/layout/fragment_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/fragment_page.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/item_square_album.xml" value="0.18" />
+        <entry key="app/src/main/res/menu/album_menu.xml" value="0.19322916666666667" />
+        <entry key="app/src/main/res/menu/main_menu.xml" value="0.33" />
+        <entry key="app/src/main/res/menu/menu_album.xml" value="0.190625" />
+        <entry key="app/src/main/res/menu/menu_artist.xml" value="0.190625" />
+        <entry key="app/src/main/res/menu/menu_main.xml" value="0.19427083333333334" />
+        <entry key="app/src/main/res/xml/settings_screen.xml" value="0.3242753623188406" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
