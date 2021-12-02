@@ -113,7 +113,11 @@ public class DeemixAPI {
     }
 
     public void setServer(String server) {
-        this.server = server;
+        if (server.endsWith("/")) {
+            this.server = server.substring(0, server.length() - 1);
+        } else {
+            this.server = server;
+        }
     }
 
     public String getARL() {
