@@ -60,7 +60,7 @@ public class AlbumActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.album_menu_item_button) {
+        if (item.getItemId() == R.id.download_menu_item_download) {
             List<Track> selectedTracks = adapter.getSelectedTracks();
             for (Track track : selectedTracks) {
                 deemixAPI.addToQueue(track.getId(), "track", new DeemixAPI.AddToQueueResponse() {

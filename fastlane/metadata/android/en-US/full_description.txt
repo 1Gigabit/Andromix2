@@ -1,0 +1,4 @@
+Andromix allows you to download music to a Deemix server.
+Searching by track, album, or artist you can select multiple tracks and/or albums to be downloaded to your Deemix server.
+
+This app is useful for those who find music out in the real world and want to download it quickly without having to use a computer to do so.
