@@ -134,12 +134,12 @@ public class MainActivity extends AppCompatActivity {
                                 deemixAPI.addToQueue(selectedTrack.getSNG_ID(), "track", new DeemixAPI.AddToQueueResponse() {
                                     @Override
                                     public void onSuccess(String networkResponse) {
-
+                                        Toast.makeText(MainActivity.this, "Added " + selectedTrack.getSNG_TITLE() + " to queue", Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onFailure(AddToQueueResults addToQueueResults) {
-
+                                        Toast.makeText(MainActivity.this, "Failed to add " + selectedTrack.getSNG_TITLE() + " to queue", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }
@@ -147,12 +147,12 @@ public class MainActivity extends AppCompatActivity {
                                 deemixAPI.addToQueue(selectedAlbum.getALB_ID(), "album", new DeemixAPI.AddToQueueResponse() {
                                     @Override
                                     public void onSuccess(String networkResponse) {
-
+                                        Toast.makeText(MainActivity.this, "Added " + selectedAlbum.getALB_TITLE() + " to queue", Toast.LENGTH_SHORT).show();
                                     }
 
                                     @Override
                                     public void onFailure(AddToQueueResults addToQueueResults) {
-
+                                        Toast.makeText(MainActivity.this, "Failed to add " + selectedAlbum.getALB_TITLE() + " to queue", Toast.LENGTH_SHORT).show();
                                     }
                                 });
                             }

@@ -8,6 +8,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -66,12 +67,12 @@ public class AlbumActivity extends AppCompatActivity {
                 deemixAPI.addToQueue(track.getId(), "track", new DeemixAPI.AddToQueueResponse() {
                     @Override
                     public void onSuccess(String networkResponse) {
-
+                        Toast.makeText(AlbumActivity.this, "Added " + track.getTitle() + " to queue", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(AddToQueueResults addToQueueResults) {
-
+                        Toast.makeText(AlbumActivity.this, "Failed to add " + track.getTitle() + " to queue", Toast.LENGTH_SHORT).show();
                     }
                 });
             }

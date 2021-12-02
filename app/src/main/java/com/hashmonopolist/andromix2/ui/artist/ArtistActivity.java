@@ -65,12 +65,12 @@ public class ArtistActivity extends AppCompatActivity {
                 deemixAPI.addToQueue(album.getId(), "album", new DeemixAPI.AddToQueueResponse() {
                     @Override
                     public void onSuccess(String networkResponse) {
-                        Toast.makeText(ArtistActivity.this, "Added" + album.getTitle() + "to queue", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(ArtistActivity.this, "Added " + album.getTitle() + " to queue", Toast.LENGTH_SHORT).show();
                     }
 
                     @Override
                     public void onFailure(AddToQueueResults addToQueueResults) {
-                        System.out.println(addToQueueResults.getErrid());
+                        Toast.makeText(ArtistActivity.this, "Failed to add " + album.getTitle() + " to queue", Toast.LENGTH_SHORT).show();
                     }
                 });
             }
