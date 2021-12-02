@@ -15,6 +15,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.hashmonopolist.andromix2.data.AddToQueueResults;
+import com.hashmonopolist.andromix2.data.queue.QueueResults;
 import com.hashmonopolist.andromix2.data.searchresults.SearchResults;
 import com.hashmonopolist.andromix2.data.tracklist.TrackList;
 import com.hashmonopolist.andromix2.data.tracklist.Tracks;
@@ -27,7 +28,6 @@ public class DeemixAPI {
     String cookie;
     private String server;
     private String ARL;
-
     public DeemixAPI(Context context, String server, String ARL) {
         Cache cache = new DiskBasedCache(context.getCacheDir());
         Network network = new BasicNetwork(new HurlStack());
@@ -99,6 +99,15 @@ public class DeemixAPI {
         requestQueue.add(stringRequest);
     }
 
+    public void getQueue(QueueResponse queueResponse) {
+        String url = this.server + "/api/getQueue";
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, url, response -> {
+            Gson gson = new GsonBuilder().create();
+            queueResponse.onSuccess(gson.fromJson(response, QueueResults.class));
+        }, System.out::println);
+        requestQueue.add(stringRequest);
+    }
+
     public String getServer() {
         return server;
     }
@@ -135,5 +144,9 @@ public class DeemixAPI {
 
     public interface AlbumsFromArtistIDResponse {
         void onSuccess(TrackList albums);
+    }
+
+    public interface QueueResponse {
+        void onSuccess(QueueResults queueResults);
     }
 }

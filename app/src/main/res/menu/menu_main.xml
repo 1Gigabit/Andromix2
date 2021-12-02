@@ -14,6 +14,11 @@
         android:title="Download"
         app:showAsAction="always" />
     <item
+        android:id="@+id/main_menu_item_downloadQueue"
+        android:icon="@drawable/ic_baseline_list_24"
+        android:title="Download Queue"
+        app:showAsAction="always" />
+    <item
         android:id="@+id/main_menu_item_settings"
         android:icon="@drawable/ic_baseline_settings_24"
         android:title="Settings"

@@ -25,6 +25,7 @@ import com.hashmonopolist.andromix2.data.searchresults.Album;
 import com.hashmonopolist.andromix2.data.searchresults.Artist;
 import com.hashmonopolist.andromix2.data.searchresults.Track;
 import com.hashmonopolist.andromix2.networking.apis.DeemixAPI;
+import com.hashmonopolist.andromix2.ui.downloadqueue.DownloadQueueActivity;
 import com.hashmonopolist.andromix2.ui.main.AlbumPageFragment;
 import com.hashmonopolist.andromix2.ui.main.PageFragmentAdapter;
 import com.hashmonopolist.andromix2.ui.main.TrackPageFragment;
@@ -112,55 +113,63 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.main_menu_item_settings)
-            startActivity(new Intent(MainActivity.this, SettingsActivity.class));
-        if (item.getItemId() == R.id.main_menu_item_download) {
-            TrackPageFragment trackPageFragment = ((TrackPageFragment) getSupportFragmentManager().findFragmentByTag("f0"));
-            AlbumPageFragment albumPageFragment = ((AlbumPageFragment) getSupportFragmentManager().findFragmentByTag("f1"));
-            List<Track> selectedTracks = trackPageFragment != null ? trackPageFragment.getSelectedTracks() : new ArrayList<>();
-            List<Album> selectedAlbums = albumPageFragment != null ? albumPageFragment.getSelectedTracks() : new ArrayList<>();
-            String selectedTracksString = selectedTracks.stream().map(Track::getSNG_TITLE).collect(Collectors.joining("\n"));
-            String selectedAlbumsString = selectedAlbums.stream().map(Album::getALB_TITLE).collect(Collectors.joining("\n"));
-            new AlertDialog.Builder(this)
-                    .setTitle("Are you sure you want to download")
-                    .setMessage("---Tracks---\n\n" +
-                            selectedTracksString + "\n\n" +
-                            "---Albums---\n\n" +
-                            selectedAlbumsString)
-                    .setPositiveButton("Yes", (dialog, which) -> {
-                        for (Track selectedTrack : selectedTracks) {
-                            deemixAPI.addToQueue(selectedTrack.getSNG_ID(), "track", new DeemixAPI.AddToQueueResponse() {
-                                @Override
-                                public void onSuccess(String networkResponse) {
+        switch (item.getItemId()) {
+            case R.id.main_menu_item_settings:
+                startActivity(new Intent(MainActivity.this, SettingsActivity.class));
+                break;
+            case R.id.main_menu_item_download:
+                TrackPageFragment trackPageFragment = ((TrackPageFragment) getSupportFragmentManager().findFragmentByTag("f0"));
+                AlbumPageFragment albumPageFragment = ((AlbumPageFragment) getSupportFragmentManager().findFragmentByTag("f1"));
+                List<Track> selectedTracks = trackPageFragment != null ? trackPageFragment.getSelectedTracks() : new ArrayList<>();
+                List<Album> selectedAlbums = albumPageFragment != null ? albumPageFragment.getSelectedTracks() : new ArrayList<>();
+                String selectedTracksString = selectedTracks.stream().map(Track::getSNG_TITLE).collect(Collectors.joining("\n"));
+                String selectedAlbumsString = selectedAlbums.stream().map(Album::getALB_TITLE).collect(Collectors.joining("\n"));
+                new AlertDialog.Builder(this)
+                        .setTitle("Are you sure you want to download")
+                        .setMessage("---Tracks---\n\n" +
+                                selectedTracksString + "\n\n" +
+                                "---Albums---\n\n" +
+                                selectedAlbumsString)
+                        .setPositiveButton("Yes", (dialog, which) -> {
+                            for (Track selectedTrack : selectedTracks) {
+                                deemixAPI.addToQueue(selectedTrack.getSNG_ID(), "track", new DeemixAPI.AddToQueueResponse() {
+                                    @Override
+                                    public void onSuccess(String networkResponse) {
 
-                                }
+                                    }
 
-                                @Override
-                                public void onFailure(AddToQueueResults addToQueueResults) {
+                                    @Override
+                                    public void onFailure(AddToQueueResults addToQueueResults) {
 
-                                }
-                            });
-                        }
-                        for (Album selectedAlbum : selectedAlbums) {
-                            deemixAPI.addToQueue(selectedAlbum.getALB_ID(), "album", new DeemixAPI.AddToQueueResponse() {
-                                @Override
-                                public void onSuccess(String networkResponse) {
+                                    }
+                                });
+                            }
+                            for (Album selectedAlbum : selectedAlbums) {
+                                deemixAPI.addToQueue(selectedAlbum.getALB_ID(), "album", new DeemixAPI.AddToQueueResponse() {
+                                    @Override
+                                    public void onSuccess(String networkResponse) {
 
-                                }
+                                    }
 
-                                @Override
-                                public void onFailure(AddToQueueResults addToQueueResults) {
+                                    @Override
+                                    public void onFailure(AddToQueueResults addToQueueResults) {
 
-                                }
-                            });
-                        }
-                    })
-                    .setNegativeButton("No", (dialog, which) -> {
+                                    }
+                                });
+                            }
+                        })
+                        .setNegativeButton("No", (dialog, which) -> {
 
-                    })
-                    .create()
-                    .show();
+                        })
+                        .create()
+                        .show();
+                break;
+            case R.id.main_menu_item_downloadQueue:
+                startActivity(new Intent(MainActivity.this, DownloadQueueActivity.class));
+                break;
+
         }
+
         return super.onOptionsItemSelected(item);
     }
 }
