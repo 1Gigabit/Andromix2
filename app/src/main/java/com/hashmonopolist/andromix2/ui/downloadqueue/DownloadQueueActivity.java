@@ -24,7 +24,7 @@ public class DownloadQueueActivity extends AppCompatActivity {
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
         recyclerView = findViewById(R.id.recycler_view_downloadqueue);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        deemixAPI = new DeemixAPI(this, sharedPreferences.getString("Server", null), null);
+        deemixAPI = new DeemixAPI(this, sharedPreferences.getString("Server", ""), "");
         deemixAPI.getQueue(queueResults -> {
             System.out.println(queueResults.getQueue().size());
             recyclerView.setAdapter(new DownloadQueueRecyclerAdapter(queueResults));

@@ -34,7 +34,7 @@ public class AlbumActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_album);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        deemixAPI = new DeemixAPI(this, sharedPreferences.getString("Server", null), sharedPreferences.getString("ARL", null));
+        deemixAPI = new DeemixAPI(this, sharedPreferences.getString("Server", ""), sharedPreferences.getString("ARL", ""));
         intent = getIntent();
         RecyclerView recyclerView = findViewById(R.id.recyclerView_tracks);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

@@ -29,7 +29,7 @@ public class ArtistActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_artist);
         sharedPreferences = getSharedPreferences("settings", Context.MODE_PRIVATE);
-        deemixAPI = new DeemixAPI(this, sharedPreferences.getString("Server", null), null);
+        deemixAPI = new DeemixAPI(this, sharedPreferences.getString("Server", ""), "");
         intent = getIntent();
         RecyclerView recyclerView = findViewById(R.id.recyclerView_albums);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));

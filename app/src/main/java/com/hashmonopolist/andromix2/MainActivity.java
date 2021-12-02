@@ -96,8 +96,8 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
-        server = sharedPreferences.getString("Server", null);
-        ARL = sharedPreferences.getString("ARL", null);
+        server = sharedPreferences.getString("Server", "");
+        ARL = sharedPreferences.getString("ARL", "");
         deemixAPI = new DeemixAPI(this, server, ARL);
         deemixAPI.loginARL((response) -> {
         });
@@ -107,7 +107,6 @@ public class MainActivity extends AppCompatActivity {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO);
 
         }
-        Toast.makeText(this, "AAA", Toast.LENGTH_SHORT).show();
         super.onResume();
     }
 

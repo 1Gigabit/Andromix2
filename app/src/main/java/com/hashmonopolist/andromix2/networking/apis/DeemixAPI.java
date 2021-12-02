@@ -1,6 +1,7 @@
 package com.hashmonopolist.andromix2.networking.apis;
 
 import android.content.Context;
+import android.widget.Toast;
 
 import com.android.volley.Cache;
 import com.android.volley.Network;
@@ -25,10 +26,12 @@ import java.util.Map;
 
 public class DeemixAPI {
     private final RequestQueue requestQueue;
+    private final Context context;
     String cookie;
     private String server;
     private String ARL;
     public DeemixAPI(Context context, String server, String ARL) {
+        this.context = context;
         Cache cache = new DiskBasedCache(context.getCacheDir());
         Network network = new BasicNetwork(new HurlStack());
         setARL(ARL);
@@ -113,6 +116,10 @@ public class DeemixAPI {
     }
 
     public void setServer(String server) {
+        if (server.length() == 0) {
+            Toast.makeText(context, "Server not defined", Toast.LENGTH_SHORT).show();
+            return;
+        }
         if (server.endsWith("/")) {
             this.server = server.substring(0, server.length() - 1);
         } else {
@@ -125,6 +132,10 @@ public class DeemixAPI {
     }
 
     public void setARL(String ARL) {
+        if (ARL.length() == 0) {
+            Toast.makeText(context, "ARL not defined", Toast.LENGTH_SHORT).show();
+            return;
+        }
         this.ARL = ARL;
     }
 
