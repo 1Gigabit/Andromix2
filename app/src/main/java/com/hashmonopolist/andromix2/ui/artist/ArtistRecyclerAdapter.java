@@ -23,7 +23,7 @@ import java.util.List;
 public class ArtistRecyclerAdapter extends RecyclerView.Adapter<ArtistViewHolder> {
     private final List<View> viewList = new ArrayList<>();
     private final TrackList trackList;
-    private boolean selecting;
+    private boolean selecting = false;
 
     public ArtistRecyclerAdapter(TrackList trackList) {
         this.trackList = trackList;
@@ -45,17 +45,6 @@ public class ArtistRecyclerAdapter extends RecyclerView.Adapter<ArtistViewHolder
         ImageView imageView_cover = holder.getImageView_cover();
         textView_title.setText(album.getTitle());
         Picasso.get().load(album.getCover_big()).into(imageView_cover);
-        holder.itemView.setOnClickListener(l -> {
-            if (!selecting) {
-                Intent intent = new Intent(holder.itemView.getContext(), AlbumActivity.class);
-                intent.putExtra("id", album.getId());
-                intent.putExtra("albumTitle", album.getTitle());
-                intent.putExtra("albumArtist", trackList.getName());
-                intent.putExtra("albumCover", album.getCover_big());
-                holder.itemView.getContext().startActivity(intent);
-            }
-
-        });
         holder.itemView.setOnLongClickListener(l -> {
             l.setSelected(!l.isSelected());
             l.setBackgroundColor(l.isSelected() ? Color.CYAN : Color.TRANSPARENT);
@@ -73,6 +62,13 @@ public class ArtistRecyclerAdapter extends RecyclerView.Adapter<ArtistViewHolder
             if (selecting) {
                 l.setSelected(!l.isSelected());
                 l.setBackgroundColor(l.isSelected() ? Color.CYAN : Color.TRANSPARENT);
+            } else {
+                Intent intent = new Intent(holder.itemView.getContext(), AlbumActivity.class);
+                intent.putExtra("id", album.getId());
+                intent.putExtra("albumTitle", album.getTitle());
+                intent.putExtra("albumArtist", trackList.getName());
+                intent.putExtra("albumCover", album.getCover_big());
+                holder.itemView.getContext().startActivity(intent);
             }
         });
     }
